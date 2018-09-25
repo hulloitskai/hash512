@@ -9,4 +9,4 @@ func init() {
 	log.SetFlags(0)
 }
 
-var defaultCost = 15
+var defaultRounds = 8192

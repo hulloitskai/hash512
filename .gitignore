@@ -1,8 +1,8 @@
 ## Repository:
 ## The compiled binary (excluding Go source files)
-/bpasswd*
-!/bpasswd*.*
-/bpasswd*.exe
+/hash512*
+!/hash512*.*
+/hash512*.exe
 ## Secrets
 .env
 
