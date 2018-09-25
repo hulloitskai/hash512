@@ -6,7 +6,6 @@ import (
 	"log"
 
 	cc "github.com/GehirnInc/crypt/common"
-
 	sha512 "github.com/GehirnInc/crypt/sha512_crypt"
 	"github.com/urfave/cli"
 	"golang.org/x/crypto/ssh/terminal"
@@ -14,12 +13,12 @@ import (
 
 func mkpasswd(ctx *cli.Context) {
 	rounds := ctx.Int("rounds")
-	pass := getPassword()
+	pass := readPass()
 	hash := hashPass(pass, rounds)
 	fmt.Println(hash)
 }
 
-func getPassword() []byte {
+func readPass() []byte {
 	var (
 		in, verify []byte
 		err        error
