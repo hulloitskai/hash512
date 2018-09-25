@@ -1,6 +1,6 @@
 # bpasswd
 
-_A tiny utility for making bcrypt password hashes._
+_A tiny CLI utility for making bcrypt password hashes._
 
 **Check out the [releases](/releases) for downloads.**
 

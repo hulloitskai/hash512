@@ -12,7 +12,7 @@ COVER_OUT = coverage.out
 
 ## ------ Commands (targets) -----
 ## Setup / configuration commands:
-.PHONY: default setup nit verify dl vendor tidy get update fix
+.PHONY: default setup init verify dl vendor tidy get update fix
 
 ## Default target when no arguments are given to make (build and run program).
 default: build run
@@ -83,7 +83,7 @@ fix:
 
 
 ## Executing / installation commands:
-.PHONY: run build install get update fix tidy
+.PHONY: run build build-all clean install get update fix tidy
 
 ## Builds and runs the program (package must be main).
 run:
@@ -108,6 +108,30 @@ build:
 		  exit 1; \
 		else printf "done.\n"; \
 		fi
+
+## Builds the program for all platforms.
+build-all:
+	@for GOOS in darwin linux windows; do \
+		for GOARCH in amd64 386; do \
+		  printf "Building for GOOS=$$GOOS, GOARCH=$$GOARCH... "; \
+			OUTNAME="$(PKG_NAME)-$$GOOS-$$GOARCH"; \
+			if [ $$GOOS == windows ]; then OUTNAME="$$OUTNAME.exe"; fi; \
+		  GOBUILD_OUT="$$(GOOS=$$GOOS GOARCH=$$GOARCH go build -o "$$OUTNAME" 2>&1)"; \
+		  if [ -n "$$GOBUILD_OUT" ]; then \
+		    printf "\nError during build:\n"; \
+		    printf "$$GOBUILD_OUT\n"; \
+		    exit 1; \
+		  else printf "done.\n"; \
+		  fi; \
+		done; \
+	done
+
+## Cleans built executables.
+clean:
+	@rm $$(ls -1 | egrep -v "^.*\.go$$" | egrep "$(PKG_NAME)") 2> /dev/null; \
+	 if [ $$? -ne 0 ]; then \
+	   printf "No removable executable files were found.\n".; \
+	 fi
 
 ## Installs the program using "go install".
 install:
