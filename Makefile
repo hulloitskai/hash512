@@ -239,34 +239,3 @@ bench:
 bench-v:
 	@printf "Benchmarking (verbose):\n"
 	@$(GOBENCH) -v
-
-
-## Docker commands:
-.PHONY: dk-ps dk-build dk-up dk-down dk-logs dk-build-up dk-start dk-stop \
-	dk-clean dk-restart dk-up-logs dk-build-up dk-build-up-logs
-
-DK = docker
-DKCMP = docker-compose
-dk-ps:
-	@$(DKCMP) ps
-dk-build:
-	@$(DKCMP) build
-dk-up:
-	@$(DKCMP) up -d
-dk-down:
-	@$(DKCMP) down
-dk-logs:
-	@$(DKCMP) logs -f
-dk-clean:
-	@$(DK) container prune; $(DK) image prune; $(DK) network prune
-
-dk-start:
-	@$(DKCMP) start
-dk-stop:
-	@$(DKCMP) stop
-dk-restart:
-	@$(DKCMP) restart
-
-dk-up-logs: dk-up dk-logs
-dk-build-up: dk-build dk-up
-dk-build-up-logs: dk-build dk-up dk-logs
