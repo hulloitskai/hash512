@@ -6,8 +6,8 @@ import (
 
 var flags = []cli.Flag{
 	cli.IntFlag{
-		Name:  "cost, c",
-		Usage: "sets the cost of the bcrypt hashing algorithm (larger is more secure)",
-		Value: defaultCost,
+		Name:  "rounds, r",
+		Usage: "sets the number of rounds for SHA-512 hashing (greater is more secure)",
+		Value: defaultRounds,
 	},
 }
