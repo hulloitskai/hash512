@@ -2,6 +2,8 @@
 
 _A tiny CLI utility for making SHA-512 password hashes._
 
+[![Go Report Card][grc-img]][grc]
+
 ## Installation
 
 - **Manually:** Check out the
@@ -34,3 +36,6 @@ macOS development machine, without the need for a Linux VM.
 So I made one.
 
 <p align="center"><img src="./assets/preview.png" width="725px" /></p>
+
+[grc]: https://goreportcard.com/report/github.com/steven-xie/hash512
+[grc-img]: https://goreportcard.com/badge/github.com/steven-xie/hash512
